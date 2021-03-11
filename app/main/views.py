@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import User, Booking
-from .forms import BookingForm
+from .forms import BookingForm, updateProfile
 from flask_login import login_required, current_user
-from .. import db
+from .. import db,photos
 
 @main.route('/')
 @login_required
