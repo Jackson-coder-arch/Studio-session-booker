@@ -29,3 +29,12 @@ def new_booking():
 
 
     return render_template('booking.html', booking_form = booking_form )
+
+
+@main.route('/about')
+# @login_required
+def about():
+    title = 'ABOUT US'
+
+
+    return render_template('about.html', title =title)
