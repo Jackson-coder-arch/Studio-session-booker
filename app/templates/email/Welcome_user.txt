@@ -1,0 +1,3 @@
+Hi {{user.username}}
+Welcome
+We have just seen you signed up for our application and want to welcome you. Please enjoy our services and incase of any query reachout to us.

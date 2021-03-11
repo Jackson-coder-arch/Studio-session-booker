@@ -40,10 +40,12 @@ class User(UserMixin,db.Model):
 class Booking(db.Model):
     __tablename__ = 'bookings'
     id = db.Column(db.Integer,primary_key = True)
+    # email = db.Column(db.String(255),unique = True,index =True)
     title =  db.Column(db.String(255))
     day = db.Column(db.String(255))
     session = db.Column(db.String(255))
     category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_booking(self):
         db.session.add(self)
@@ -51,7 +53,7 @@ class Booking(db.Model):
 
 
     def __repr__(self):
-        return f'User {self.description} '
+        return f'Booking {self.day} '
 
 
 

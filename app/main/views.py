@@ -13,19 +13,26 @@ def index():
 
     return render_template('index.html', title =title)
 
-@main.route('/bookings/new_booking', methods = ['GET','POST'])
+
+@main.route('/booking/new_booking', methods = ['GET','POST'])
 
 def new_booking():
     booking_form = BookingForm()
+    title = 'Welcome Book with us a session'
+    booking = Booking.query.all()
+
 
     if booking_form.validate_on_submit():
-        booking = Booking(title = booking_form.title.data, day = booking_form.day.data, session = booking_form.session.data, category = booking_form.category.data)
+        booking = Booking(email = booking_form.email.data, title = booking_form.title.data, day = booking_form.day.data, session = booking_form.session.data, category = booking_form.category.data)
 
         db.session.add(booking)
         db.session.commit()
 
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.new_booking'))
+
+    # if new_booking.query.filter(user=request.user).count()>=3:
+    #     return redirect('Book the remaining days')
 
 
 
-    return render_template('booking.html', booking_form = booking_form )
+    return render_template('booking.html', booking_form = booking_form, bookings = booking, title = title )
