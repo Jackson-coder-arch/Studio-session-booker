@@ -1,6 +1,7 @@
 from app import db
 from flask_login import UserMixin
 from datetime import datetime
+from werkzeug.security import generate_password_hash,check_password_hash 
 from . import login_manager
 
 
@@ -10,6 +11,7 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index =True)
     email = db.Column(db.String(255),unique = True,index =True)
+    pass_secure = db.Column(db.String(255))
     bookings = db.relationship('Booking',backref = 'user', lazy = 'dynamic')
 
     @property
@@ -40,10 +42,12 @@ class User(UserMixin,db.Model):
 class Booking(db.Model):
     __tablename__ = 'bookings'
     id = db.Column(db.Integer,primary_key = True)
+    # email = db.Column(db.String(255),unique = True,index =True)
     title =  db.Column(db.String(255))
     day = db.Column(db.String(255))
     session = db.Column(db.String(255))
     category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_booking(self):
         db.session.add(self)
@@ -51,7 +55,7 @@ class Booking(db.Model):
 
 
     def __repr__(self):
-        return f'User {self.description} '
+        return f'Booking {self.day} '
 
 
 
