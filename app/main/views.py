@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import User, Booking
-from .forms import BookingForm, updateProfile
+from .forms import BookingForm
 from flask_login import login_required, current_user
-from .. import db,photos
+from .. import db
 
 @main.route('/')
 @login_required
@@ -22,7 +22,7 @@ def new_booking():
 
 
     if booking_form.validate_on_submit():
-        booking = Booking(email = booking_form.email.data, title = booking_form.title.data, day = booking_form.day.data, session = booking_form.session.data, category = booking_form.category.data)
+        booking = Booking(title = booking_form.title.data, day = booking_form.day.data, session = booking_form.session.data, category = booking_form.category.data)
 
         db.session.add(booking)
         db.session.commit()
