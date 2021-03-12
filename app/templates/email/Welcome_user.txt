@@ -1,0 +1,3 @@
+Hi {{user.username}}
+Welcome to RF Studio
+You just signed up with us get the greatest deals, relax as we serve serve you our passion is put a smile in your face.
