@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import Required, Email, EqualTo
-from wtforms import StringField, SubmitField,RadioField
+from wtforms import StringField, SubmitField,RadioField,TextAreaField
 from wtforms import SelectField, IntegerField
 
 class BookingForm(FlaskForm):
@@ -11,3 +11,6 @@ class BookingForm(FlaskForm):
     category = SelectField('Category', choices =[('Video Record','Video Record'),('Photo Session','Photo Session'),('Music Record','Music Record')])
     submit = SubmitField('Book now')
 
+class UpdateProfile(FlaskForm):
+    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')

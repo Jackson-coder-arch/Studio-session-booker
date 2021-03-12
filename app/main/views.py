@@ -1,12 +1,12 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import User, Booking
-from .forms import BookingForm
+from .forms import BookingForm,UpdateProfile
 from flask_login import login_required, current_user
-from .. import db
+from .. import db,photos
 
 @main.route('/')
-@login_required
+# @login_required
 def index():
 
 
@@ -27,11 +27,14 @@ def new_booking():
         db.session.add(booking)
         db.session.commit()
 
+        if booking.object.filter(user=request.user).count()> 3:
+            flash('Choose another day')
+
         return redirect(url_for('main.new_booking'))
 
     
 
-    return render_template('booking.html', booking_form = booking_form, bookings = booking, title = title )
+    return render_template('booking.html', booking_form = booking_form, bookings = booking, title = title, profile= profile)
 
 
 @main.route('/user/<uname>')
@@ -61,9 +64,10 @@ def update_profile(uname):
 
         return redirect(url_for('.profile', uname = user.username))
 
-    return render_template('profile/update.html', form = form)
+    return render_template('profile/updates.html', form = form)
 
 @main.route('/user/<uname>/update/pic', methods = ['POST'])
+@login_required
 def update_pic(uname):
     user = User.query.filter_by(username = uname).first()
 

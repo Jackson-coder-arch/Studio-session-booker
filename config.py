@@ -7,7 +7,7 @@ class Config:
     
     SECRET_KEY = '12345'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://jack:jack@localhost/studio1'
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://jack:jack@localhost/studio2'
 
 
     UPLOADED_PHOTOS_DEST ='app/static/photos'

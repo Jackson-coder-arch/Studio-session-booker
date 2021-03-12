@@ -12,6 +12,8 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255),index =True)
     email = db.Column(db.String(255),unique = True,index =True)
     pass_secure = db.Column(db.String(255))
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     bookings = db.relationship('Booking',backref = 'user', lazy = 'dynamic')
 
     @property

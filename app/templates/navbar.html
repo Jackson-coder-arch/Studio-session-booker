@@ -17,26 +17,26 @@
           {% if current_user.is_authenticated %}
 
           <li class="nav-item">
-            <a class="nav-link fa fa-user" href="/profile">PROFILE</a>
+            <a class="nav-link fa fa-user" href="{{url_for('main.profile',uname=current_user.username)  }}  ">{{current_user.username}}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link fa fa-clock-o" href="/profile">BOOK A SESSION</a>
+            <a class="nav-link fa fa-clock-o" href="{{url_for('main.new_booking') }}  ">BOOK A SESSION</a>
           </li>
 
 
           <li class="nav-item">
-            <a class="nav-link fa fa-sign-out" href="/auth/logout">Sign Out</a>
+            <a class="nav-link fa fa-sign-out" href="{{url_for('auth.logout')}}  ">Sign Out</a>
           </li>
 
           {% else %}
 
           <li class="nav-item">              
-            <a class="nav-link fa fa-sign-in" href="/auth/login">Sign In</a>
+            <a class="nav-link fa fa-sign-in" href="{{url_for('auth.login')}}">Sign In</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link fa fa-registered" href="/auth/register">Sign Up</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link fa fa-registered" href="{{url_for('auth.register')}}">Sign Up</a>
+          </li> -->
           {% endif %}
 
         </ul>
